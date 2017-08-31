@@ -1,0 +1,22 @@
+<div class="row">
+
+
+<div class="col-lg-4">
+  <h3>Panel de Administracion</h3>
+
+
+
+  <ul class="nav flex-column nav-pills">
+    <li class="nav-item" >
+      <a class="nav-link" [routerLink]="['listado']" [routerLinkActive]="['active']">List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['crear']" [routerLinkActive]="['active']">Create</a>
+    </li>
+  </ul>
+</div>
+
+<div class="col-lg-8">
+  <router-outlet></router-outlet>
+</div>
+</div>

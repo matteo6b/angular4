@@ -1,0 +1,53 @@
+<div class="search-results"
+           infiniteScroll
+           [infiniteScrollDistance]="2"
+           [infiniteScrollThrottle]="500"
+           (scrolled)="onScroll()"
+           [scrollWindow]="false">
+
+
+<div class="row">
+
+
+<div class="col-sm-12">
+
+  <div class="container componente-lista">
+  <h3>Ultimos Añadidos</h3>
+    <div *ngFor=" let video of videos " class="panel">
+
+      <a [routerLink]="['/video-player', video._id ]" >
+        <div class="row">
+
+
+        <div class="col-sm-12 ">
+          <video   controls>
+            <source src="{{url}}{{video.video_src}}" >
+          </video>
+        </div>
+</div>
+<div class="row">
+
+
+        <div class="detalles col-sm-6 ">
+          <h3> {{video.title}} </h3>
+          <p> {{video.description}} </p>
+
+        </div>
+        <div class="col-sm-6">
+          <like [id]="video._id"[likesCount]="video.favoritesCount"
+           [isActive]="video.active" ></like>
+        </div>
+</div>
+      </a>
+
+
+    </div>
+
+</div>
+
+
+
+</div>
+
+</div>
+</div>

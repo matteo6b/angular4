@@ -1,0 +1,35 @@
+.componente-lista{
+text-align: center;
+
+
+
+
+}
+
+.search-results{
+  height: 100%;
+}
+h3{
+  text-align: center;
+    color: #0275d8;
+    padding: 1rem;
+}
+.panel{
+  margin: 2rem 0.6rem;
+  background-color: #ffffe6;
+  width: 20rem;
+  display: inline-block;
+}
+.panel video{
+  width: 20rem
+}
+
+.componente-lista .panel a{
+
+    text-decoration: none;
+}
+
+.componente-lista .panel a:hover{
+
+    background:#F6F6F6;
+}
