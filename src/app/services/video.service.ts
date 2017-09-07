@@ -32,6 +32,15 @@ getFavorites(){
                               .map(res => res.json());
 
 }
+getVideo(id){
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':this.userService.getToken()
+});
+  return this._http.get(this.url+'video/'+id,{headers:headers})
+                              .map(res => res.json());
+
+}
 
 favoriteVideo(id){
   let headers = new Headers({

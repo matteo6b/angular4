@@ -43,8 +43,8 @@
 
     </li>
     <li class="nav-item" *ngIf="identity">
-      <a class="nav-link" [routerLink]="['/add']" [routerLinkActive]="['active']">
-        <span class="glyphicon glyphicon-home"></span>
+      <a class="nav-link" [routerLink]="['/add-video']" [routerLinkActive]="['active']">
+        <i class="fa fa-upload" aria-hidden="true"></i>
             Añadir Video
       </a>
     </li>
@@ -59,6 +59,7 @@
 
   </ul>
   <div class="btn-group" *ngIf="identity">
+    <img src="{{url +'get-image-file/'+identity.image}}" width="40px" height="40px" alt="" class="avatar">
     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {{identity.name}}
     </button>

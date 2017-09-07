@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate{
   }
   canActivate(){
     let identity = this._userService.getIdentity()
-    if(identity && identity.role =='ROLE_MUSIC'){
+    if(identity && identity.role =='ROLE_ADMIN'){
       return true;
     }else{
       this._router.navigate(['/']);
