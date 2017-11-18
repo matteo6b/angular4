@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {GLOBAL} from '../../services/global';
 import {VideoService} from '../../services/video.service'
+import {UserService} from '../../services/user.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [VideoService]
+  providers: [VideoService,UserService]
 })
 export class HomeComponent implements OnInit {
   public url:string;
   public videos:Array<Object>;
-    public favorites:Array<Object>;
-  constructor( private _videoService:VideoService) {
-
+  public identity;
+  constructor( private _videoService:VideoService,private _userService:UserService) {
+      this.identity=  this._userService.getIdentity();
     this.url=GLOBAL.url
   }
 
@@ -21,51 +22,10 @@ export class HomeComponent implements OnInit {
 
   }
 
-  getFavorites(){
-    this._videoService.getFavorites().subscribe(
-      response =>{
-        for(let video of response)
-          {
-            for(let favorite of video.user.favorites){
-              if(favorite===video._id){
-
-                video.active=true;
-              }
-              else{
-                video.active=false;
-              }
-            }
-
-          }
-
-      this.favorites=response;
-
-
-      },
-      error =>{
-
-      }
-    )
-
-
-  }
-
   getVideos(){
 
     this._videoService.getVideos().subscribe(
       response =>{
-        for(let video of response)
-          {
-            for(let favorite of video.user.favorites){
-              if(favorite==video._id){
-
-                video.active=true;
-              }
-
-            }
-
-          }
-
       this.videos=response;
 
 

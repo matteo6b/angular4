@@ -15,7 +15,8 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { AddVideoComponent } from './components/add-video/add-video.component';
 import { MyVideosComponent } from './components/my-videos/my-videos.component';
 import { VideoComponent } from './components/video/video.component';
-
+import {AuthGuard} from './services/auth.guard';
+import {UserService} from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { VideoComponent } from './components/video/video.component';
 
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    AuthGuard,
+    UserService
   ]
   ,
   bootstrap: [AppComponent]

@@ -26,15 +26,13 @@ export class RegisterComponent implements OnInit {
  onsubmit(registerForm){
     this._userService.register(this.user).subscribe(
       response =>{
-          if(response.user){
+
         this.user =response.user;
         this.status="success";
         this.user = new User('','','','','','ROLE_USER','');
         registerForm.reset();
-        }
-        else{
-          this.status="error";
-        }
+
+
 
       },
       error =>{

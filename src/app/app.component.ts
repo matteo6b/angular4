@@ -17,7 +17,7 @@ export class AppComponent implements OnInit ,DoCheck {
       private _route :ActivatedRoute,
       private _router: Router,
   ){
-  this.title='Street';
+  this.title='VmP4';
   this.url=GLOBAL.url;
   }
   ngOnInit(){

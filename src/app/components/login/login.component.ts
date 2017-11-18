@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
               this.token=response.token;
               this.user=response.user;
               this.user.password ="";
-              console.log(this.user);
+
 
               localStorage.setItem('identity',JSON.stringify(this.user))
               localStorage.setItem('token',this.token)
-              this._router.navigate(['/'])
+              this._router.navigate(['/home'])
               if(!this.token){
                 this.status="error"
               }
