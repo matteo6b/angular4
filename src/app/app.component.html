@@ -1,33 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!--<div class="navigation col-md-12">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a [routerLink]="['/home']" class="navbar-brand">{{title}}</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li>
-              <a [routerLink]="['/home']">
-                <span class="glyphicon glyphicon-home"></span>
-                    Inicio
-              </a>
 
-          </li>
-          <li>
-              <a [routerLink]="['/home']">
-                <span class="glyphicon glyphicon-home"></span>
-                    Inicio
-              </a>
-
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </nav>
-
-</div>-->
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse ">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
@@ -45,19 +16,19 @@
     <li class="nav-item" *ngIf="identity">
       <a class="nav-link" [routerLink]="['/add-video']" [routerLinkActive]="['active']">
         <i class="fa fa-upload" aria-hidden="true"></i>
-            Añadir Video
+            Add Video
       </a>
     </li>
     <li class="nav-item" *ngIf="identity">
       <a class="nav-link" [routerLink]="['/my-videos']" [routerLinkActive]="['active']">
-        <i class="fa fa-upload" aria-hidden="true"></i>
-            Mis Videos
+        <i class="fa fa-user" aria-hidden="true"></i>
+            Profile
       </a>
     </li>
   </ul>
   <ul class="nav navbar-nav" *ngIf="!identity">
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/registro']" [routerLinkActive]="['active']" >Registro</a>
+      <a class="nav-link" [routerLink]="['/registro']" [routerLinkActive]="['active']" >Register</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">Login</a>
@@ -70,8 +41,8 @@
       {{identity.name}}
     </button>
     <div class="dropdown-menu dropdown-menu-right">
-      <a class="dropdown-item" [routerLink]="['/user-edit']">Mis Datos</a>
-      <a class="dropdown-item" (click)="logout()">Salir</a>
+      <a class="dropdown-item" [routerLink]="['/user-edit']">My Data</a>
+      <a class="dropdown-item" (click)="logout()">logout</a>
 
     </div>
   </div>

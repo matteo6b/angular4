@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
 <div class="col-sm-6">
-<h1>Registro</h1>
+<h1>Register</h1>
 <div class="alert alert-success" *ngIf="status == 'success'" >
   Registro completado correctamente, <a [routerLink]="['/login']">Identificate aquí</a>
 </div>
@@ -9,24 +9,24 @@
 </div>
   <form #registerForm="ngForm" (ngSubmit)="onsubmit(registerForm)" class="col-sm-10">
   <p>
-    <label>Nombre</label>
+    <label>Name</label>
       <input type="text" name="name"  #name="ngModel" [(ngModel)]="user.name" class="form-control"
       required />
   <span *ngIf="!name.valid && name.touched"> El nombre es obligatorio</span>
   </p>
   <p>
-    <label>apellidos</label>
+    <label>SurName</label>
       <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control"
       required>
       <span *ngIf="!surname.valid && surname.touched"> los apellidos son obligatorios</span>
   </p>
   <p>
-    <label>correo electronico</label>
+    <label>email</label>
       <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
       <span *ngIf="!email.valid && email.touched"> El email es obligatorio</span>
   </p>
   <p>
-    <label>contraseña</label>
+    <label>password</label>
       <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required>
       <span *ngIf="!password.valid && password.touched"> El password es obligatorio</span>
   </p>

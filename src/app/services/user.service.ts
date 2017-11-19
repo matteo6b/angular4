@@ -34,6 +34,15 @@ updateUser(userUpdate){
                               .map(res => res.json());
 
 }
+getUser(){
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':this.getToken()
+});
+return this._http.get(this.url+'user/',{headers:headers})
+                            .map(res => res.json());
+
+}
 getIdentity(){
   let identity= JSON.parse(localStorage.getItem('identity'));
   return identity
