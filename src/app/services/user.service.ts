@@ -34,13 +34,31 @@ updateUser(userUpdate){
                               .map(res => res.json());
 
 }
-getUser(){
+getProfile(){
   let headers = new Headers({
     'Content-Type':'application/json',
     'Authorization':this.getToken()
 });
 return this._http.get(this.url+'user/',{headers:headers})
                             .map(res => res.json());
+
+}
+getUser(id):Observable<any>{
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':this.getToken()
+});
+  return this._http.get(this.url+'user/'+id,{headers:headers})
+                                  .map(res => res.json());
+
+}
+getUsers(page=null):Observable<any>{
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':this.getToken()
+});
+return this._http.get(this.url+'users/'+page,{headers:headers})
+                                      .map(res => res.json());
 
 }
 getIdentity(){

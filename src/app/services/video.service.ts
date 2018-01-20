@@ -23,6 +23,17 @@ getVideos(){
                               .map(res => res.json());
 
 }
+getTimeLine(page=1){
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':this.userService.getToken()
+});
+  return this._http.get(this.url+'timeline/'+page,{headers:headers})
+                              .map(res => res.json());
+
+}
+
+
 getFavorites(){
   let headers = new Headers({
     'Content-Type':'application/json',

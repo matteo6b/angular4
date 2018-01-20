@@ -1,0 +1,12 @@
+.image-user{
+  border-radius: 500px;
+  overflow: hidden;
+  margin: 0px 14px;
+}
+.user-name{
+  margin-top: 20px;
+  font-weight: bold;
+}
+.label{
+  padding: 0.5rem;
+}

@@ -1,4 +1,4 @@
-
+<ng-progress></ng-progress>
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse ">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
@@ -25,6 +25,12 @@
             Profile
       </a>
     </li>
+    <li class="nav-item" *ngIf="identity">
+      <a class="nav-link" [routerLink]="['/users']" [routerLinkActive]="['active']">
+        <i class="fa fa-users" aria-hidden="true"></i>
+            People
+      </a>
+    </li>
   </ul>
   <ul class="nav navbar-nav" *ngIf="!identity">
     <li class="nav-item">
@@ -36,7 +42,8 @@
 
   </ul>
   <div class="btn-group" *ngIf="identity">
-    <img src="{{url +'get-image-file/'+identity.image}}" width="40px" height="40px" alt="" class="avatar">
+    <img *ngIf="identity.image" src="{{url +'get-image-file/'+identity.image}}" width="40px" height="40px" alt="avatar" class="avatar">
+        <img *ngIf="!identity.image" src="assets/user.png" width="40px" height="40px" alt="avatar" class="avatar">
     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {{identity.name}}
     </button>

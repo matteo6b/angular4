@@ -9,6 +9,7 @@ video {
 
 .controles {
     font-size: 30px;
+    cursor:pointer;
 }
 
 .sugerencias {
@@ -22,8 +23,14 @@ video {
 .sugerencias h4 {
     font-size: 15px;
 }
+.videoInfo{
+  background-color: #ffffe6;
+}
 
-
+.user{
+  background-color: #99ccff;
+  cursor: pointer;
+}
 
 .progreso {
     display: block;

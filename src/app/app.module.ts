@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './app.routing'
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
+import { BrowserXhr } from '@angular/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AdminModule} from './admin/admin.module'
 import { AppComponent } from './app.component';
@@ -17,6 +19,9 @@ import { MyVideosComponent } from './components/my-videos/my-videos.component';
 import { VideoComponent } from './components/video/video.component';
 import {AuthGuard} from './services/auth.guard';
 import {UserService} from './services/user.service';
+import { UsersComponent } from './components/users/users.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +35,9 @@ import {UserService} from './services/user.service';
     AddVideoComponent,
     MyVideosComponent,
     VideoComponent,
+    UsersComponent,
+    TimelineComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,13 +45,15 @@ import {UserService} from './services/user.service';
     HttpModule,
     routing,
     AdminModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+     NgProgressModule
 
   ],
   providers: [
+  {provide: BrowserXhr, useClass: NgProgressBrowserXhr},
     appRoutingProviders,
     AuthGuard,
-    UserService
+    UserService,
   ]
   ,
   bootstrap: [AppComponent]

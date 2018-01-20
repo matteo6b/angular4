@@ -1,8 +1,9 @@
 
 <div class="container">
     <div class="row my-2">
-      <div class="col-lg-4 order-lg-1 text-center">
-          <img src="{{url +'get-image-file/'+user.image}}" width="150" height="150"class="mx-auto img-fluid img-circle d-block" alt="avatar">
+      <div class="col-lg-4 order-lg-1 text-center img-profile">
+        <img *ngIf="user.image" src="{{url+'get-image-file/'+ user.image}}" alt="image-user" width="200px" height="200px" >
+          <img *ngIf="!user.image" src="assets/user.png" alt="image-user" width="200px" height="200px" >
 
       </div>
         <div class="col-lg-8 order-lg-2">
@@ -33,6 +34,7 @@
                         </div>
 
                         </div>
+                        <timeline></timeline>
                     </div>
                     <!--/row-->
 
@@ -52,33 +54,20 @@
                 </div>
                   </a>
                 <div class="row">
-
-
-                        <div class="detalles col-sm-6 ">
+                        <div class="detalles col-sm-12 ">
                           <h3> {{video.title}} </h3>
                           <p> {{video.description}} </p>
 
                         </div>
-
-                        <div class="col-sm-6">
-                          <like [id]="video._id"
-                           [likesCount]="video.favoritesCount" ></like>
-                        </div>
                 </div>
-
-
-
                     </div>
                   </div>
                 </div>
                 <div class="tab-pane" id="myFavorites">
                   .<div class="row">
                     <div *ngFor=" let video of user.favorites " class="panel">
-
                       <a [routerLink]="['/video-player', video._id ]" >
                         <div class="row">
-
-
                         <div class="col-sm-12 ">
                           <video   controls>
                             <source src="{{url}}{{video.video_src}}" >
@@ -89,19 +78,14 @@
                 <div class="row">
 
 
-                        <div class="detalles col-sm-6 ">
+                        <div class="detalles col-sm-12 ">
                           <h3> {{video.title}} </h3>
                           <p> {{video.description}} </p>
 
                         </div>
 
-                        <div class="col-sm-6">
-                          <like [id]="video._id"
-                           [likesCount]="video.favoritesCount" ></like>
-                        </div>
+
                 </div>
-
-
 
                     </div>
                   </div>

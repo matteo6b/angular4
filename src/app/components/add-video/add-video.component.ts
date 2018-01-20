@@ -4,6 +4,7 @@ import {GLOBAL} from '../../services/global';
 import {VideoService} from '../../services/video.service'
 import {UserService} from '../../services/user.service';
 import {Video } from '../../models/video';
+import {Router,ActivatedRoute,Params} from '@angular/router';
 @Component({
   selector: 'app-add-video',
   templateUrl: './add-video.component.html',
@@ -17,6 +18,7 @@ export class AddVideoComponent implements OnInit {
   constructor(
     private _videoService: VideoService,
     private _uploadService:UploadService,
+    private _router: Router,
     private _userService:UserService
   ) {
     this.video=new Video('','','',new File([""], "video"));
@@ -32,9 +34,7 @@ export class AddVideoComponent implements OnInit {
 
       this._uploadService.makeVideo(this.url+'video/add',this.video,this.token)
       .then((result: any) =>{
-      //  this.user.image=result.image;
-      //  localStorage.setItem('identity',JSON.stringify(this.user));
-      console.log(result);
+            this._router.navigate(['/home'])
       })
   }
   fileChangeEvent(fileInput:any){

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
               localStorage.setItem('identity',JSON.stringify(this.user))
               localStorage.setItem('token',this.token)
-              this._router.navigate(['/home'])
+              this._router.navigate(['/home']);
               if(!this.token){
                 this.status="error"
               }

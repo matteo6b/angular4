@@ -1,0 +1,46 @@
+.<div class="col-lg-8">
+<h1>{{title}}</h1>
+<div class="people">
+  <div *ngFor="let user of users" class="item-user">
+    <div class="card ">
+      <div class="card-block">
+        <div class="image-user  pull-left">
+          <a href="#">
+              <img *ngIf="user.image" src="{{url+'get-image-file/'+ user.image}}" alt="image-user" width="75px" height="75px" >
+                <img *ngIf="!user.image" src="assets/user.png" alt="image-user" width="75px" height="75px" >
+          </a>
+        </div>
+
+      <div class="user-name pull-left">
+          <a href="#">
+        {{user.name+' '+user.surname}}
+          </a>
+      </div>
+      <div class="pull-right" *ngIf="user._id!=identity._id">
+
+        <button (click)="followUser(user._id)" class="btn btn-success" *ngIf="follows.indexOf(user._id)< 0"><i class="fa fa-plus-circle" ></i><span class="label">Follow</span></button>
+        <button  class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0"
+          (mouseenter)="mouseEnter(user._id)"
+          (mouseleave)="mouseLeave(user._id)"
+          [class.btn-danger]="followUserOver==user._id"
+          (click)="unFollowUser(user._id)"
+          >
+          <span *ngIf="followUserOver==user._id; else following">
+          <i class="fa fa-minus-circle" ></i><span class="label">
+stop following</span>
+        </span>
+      <ng-template #following>
+        <i class="fa fa-check-circle" ></i>
+<span class="label">Following</span>
+      </ng-template>
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ul class="pagination pull-right">
+  <li *ngIf="pages!=page" class="page-item"><a [routerLink]="['/users',nextPage]">Next</a></li>
+  <li   *ngIf="page>1"class="page-item" ><a [routerLink]="['/users',prevPage]">Previous</a></li>
+</ul>
+</div>

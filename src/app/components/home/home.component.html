@@ -1,9 +1,4 @@
-<div class="search-results"
-           infiniteScroll
-           [infiniteScrollDistance]="2"
-           [infiniteScrollThrottle]="500"
-           (scrolled)="onScroll()"
-           [scrollWindow]="false">
+
 
 
 <div class="row">
@@ -12,7 +7,7 @@
 <div class="col-sm-12">
 
   <div class="container componente-lista">
-  <h3>Ultimos Añadidos</h3>
+  <h3>Last Additions</h3>
     <div *ngFor=" let video of videos " class="panel">
 
       <a [routerLink]="['/video-player', video._id ]" >
@@ -20,8 +15,8 @@
 
 
         <div class="col-sm-12 ">
-          <video   controls>
-            <source src="{{url}}{{video.video_src}}" >
+          <video   controls >
+            <source src="{{url}}{{video.video_src}}" type="video/mp4" >
           </video>
         </div>
 </div>
@@ -51,5 +46,4 @@
 
 </div>
 
-</div>
 </div>

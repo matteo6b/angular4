@@ -15,7 +15,7 @@ export class MyVideosComponent implements OnInit {
    }
 
   ngOnInit() {
-      this._userService.getUser().subscribe(response=>{
+      this._userService.getProfile().subscribe(response=>{
           this.user=response;
 
       })
