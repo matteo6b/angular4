@@ -1,7 +1,7 @@
 <div class="col-lg-8">
 <h1>{{title}}</h1>
 .<div class="row">
-  <div *ngFor=" let video of videos" class="panel">
+  <div *ngFor=" let video of videos" class="card">
 
     <a [routerLink]="['/video-player', video._id ]" >
       <div class="row">
@@ -15,6 +15,7 @@
       <div class="col-sm-1 ">
         <img *ngIf="video.user.image" src="{{url+'get-image-file/'+ video.user.image}}" alt="image-user" width="75px" height="75px" >
           <img *ngIf="!video.user.image" src="assets/user.png" alt="image-user" width="75px" height="75px" >
+          <p class="name"> {{video.user.name}}</p>
       </div>
 </div>
 </a>

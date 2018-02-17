@@ -1,10 +1,7 @@
 <div class="col-sm-6">
   <h1>Add Video</h1>
-  <div class="alert alert-success" *ngIf="status == 'success'" >
-    Los datos se han actualizado correctamente
-  </div>
   <div class="alert alert-danger" *ngIf="status == 'error'" >
-    Error
+    Error no uploaded video
   </div>
   <form #videoForm="ngForm" (ngSubmit)="onsubmit(videoForm)" class="col-sm-10">
   <p>
@@ -18,17 +15,10 @@
       <textarea name="description" #description="ngModel" class="form-control" [(ngModel)]="video.description" rows="8" cols="80" required></textarea>
       <span *ngIf="!description.valid && description.touched"> La descripcion es obligatoria</span>
   </p>
-
-  <div class="video" *ngIf="video.video_src">
-    <video   controls>
-      <source src="{{url}}{{video.video_src}}" >
-    </video>
-  </div>
   <p>
-    <label>Sube tu Video</label>
-
-      <input type="file" placeholder="subir Video" (change)="fileChangeEvent($event)">
-  </p>
+  <label for="FileUpload" class="btn btn-info upload ">Upload Video..</label>
+  <input type="file" id="FileUpload" (change)="fileChangeEvent($event)" class="custom-file-input" required>
+    </p>
 
     <button type="submit" class="btn btn-primary"
     [disabled]="!videoForm.form.valid">

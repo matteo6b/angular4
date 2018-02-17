@@ -1,14 +1,14 @@
-.panel{
+.card{
   margin: 2rem 0.6rem;
   background-color: #0275d8;
   width: 20rem;
-  display: inline-block;
+
 }
-.panel video{
+.card video{
   width: 20rem
 }
 
-.componente-lista .panel a{
+.componente-lista .card a{
 
     text-decoration: none;
 }
@@ -16,4 +16,14 @@ h3{
   text-align: center;
     color: #ffffe6;
     padding: 1rem;
+}
+p{
+  text-align: center;
+  color: #ffffe6;
+}
+img{
+  margin: 0.5rem;
+}
+.name{
+  margin:0.5rem;
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {VideoService} from '../../services/video.service'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {VideoService} from '../../services/video.service';
+import { Video } from '../../models/video'
 @Component({
   selector: 'like',
   templateUrl: './like.component.html',
@@ -8,14 +9,16 @@ import {VideoService} from '../../services/video.service'
 })
 export class LikeComponent {
   @Input('likesCount') likesCount: number;
-  @Input('id') id: String;
+  @Input('video') video: Video;
+  @Output() toggle = new EventEmitter<boolean>();
   constructor( private _videoService:VideoService) {
 
   }
   onClick() {
 
-      this._videoService.favoriteVideo(this.id).subscribe (
+      this._videoService.favoriteVideo(this.video._id).subscribe (
         response =>{
+           this.toggle.emit(true);
           this.likesCount=response.video.favoritesCount;
         },
       )
@@ -23,8 +26,10 @@ export class LikeComponent {
     }
     onunFavorite(){
 
-      this._videoService.unfavoriteVideo(this.id).subscribe (
-        response =>{this.likesCount=response.video.favoritesCount;},
+      this._videoService.unfavoriteVideo(this.video._id).subscribe (
+        response =>{
+             this.toggle.emit(false);
+          this.likesCount=response.video.favoritesCount;},
       )
     }
 

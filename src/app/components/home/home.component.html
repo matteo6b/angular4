@@ -8,7 +8,7 @@
 
   <div class="container componente-lista">
   <h3>Last Additions</h3>
-    <div *ngFor=" let video of videos " class="panel">
+    <div *ngFor=" let video of videos " class="card">
 
       <a [routerLink]="['/video-player', video._id ]" >
         <div class="row">
@@ -31,8 +31,8 @@
         </div>
 
         <div class="col-sm-6">
-          <like [id]="video._id"
-           [likesCount]="video.favoritesCount" ></like>
+          <like [video]="video"
+           [likesCount]="video.favoritesCount" (toggle)="onToggleFavorite(video,$event)"  ></like>
         </div>
 </div>
 

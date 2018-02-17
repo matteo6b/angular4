@@ -1,3 +1,98 @@
-<p>
-  user works!
-</p>
+
+<div class="container">
+    <div class="row my-2">
+      <div class="col-lg-4 order-lg-1 text-center img-profile">
+        <img *ngIf="user.user.image" src="{{url+'get-image-file/'+ user.user.image}}" alt="image-user" width="200px" height="200px" >
+          <img *ngIf="!user.user.image" src="assets/user.png" alt="image-user" width="200px" height="200px" >
+
+      </div>
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#myVideos" data-toggle="tab" class="nav-link">My Videos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#myFavorites" data-toggle="tab" class="nav-link">My Favorites</a>
+                </li>
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    <h5 class="mb-3">User Profile</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>About</h6>
+                            <p>
+                                {{user.user.name}}  {{user.user.surname}}
+                            </p>
+                            <h6>Email</h6>
+                            <p>
+                                {{user.user.email}}
+                            </p>
+                        </div>
+
+                        </div>
+
+                    </div>
+                    <!--/row-->
+
+                <div class="tab-pane" id="myVideos">
+                  .<div class="row">
+                    <div *ngFor=" let video of user.user.myvideos " class="card">
+
+                      <a [routerLink]="['/video-player', video._id ]" >
+                        <div class="row">
+
+
+                        <div class="col-sm-12 ">
+                          <video   controls>
+                            <source src="{{url}}{{video.video_src}}" >
+                          </video>
+                        </div>
+                </div>
+                  </a>
+                <div class="row">
+                        <div class="detalles col-sm-12 ">
+                          <h3> {{video.title}} </h3>
+                          <p> {{video.description}} </p>
+
+                        </div>
+                </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="myFavorites">
+                  .<div class="row">
+                    <div *ngFor=" let video of user.user.favorites " class="panel">
+                      <a [routerLink]="['/video-player', video._id ]" >
+                        <div class="row">
+                        <div class="col-sm-12 ">
+                          <video   controls>
+                            <source src="{{url}}{{video.video_src}}" >
+                          </video>
+                        </div>
+                </div>
+                  </a>
+                <div class="row">
+
+
+                        <div class="detalles col-sm-12 ">
+                          <h3> {{video.title}} </h3>
+                          <p> {{video.description}} </p>
+
+                        </div>
+
+
+                </div>
+
+                    </div>
+                  </div>
+                </div>
+
+        </div>
+          </div>
+
+    </div>
+</div>

@@ -21,6 +21,10 @@ export class HomeComponent implements OnInit {
       this.getVideos();
 
   }
+  onToggleFavorite(video:any,favorited: boolean) {
+  video.favorited = favorited;
+
+}
 
   getVideos(){
 

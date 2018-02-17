@@ -13,15 +13,16 @@ import {Router,ActivatedRoute,Params} from '@angular/router';
 })
 export class AddVideoComponent implements OnInit {
   public url:string;
-  public token;
-  public video ;
+  public token:string;
+  public video:Video;
+  public status:string;
   constructor(
     private _videoService: VideoService,
     private _uploadService:UploadService,
     private _router: Router,
     private _userService:UserService
   ) {
-    this.video=new Video('','','',new File([""], "video"));
+    this.video=new Video('','','','',new File([""], "video"));
     this.token=_userService.getToken();
     this.url=GLOBAL.url;
   }
@@ -35,6 +36,8 @@ export class AddVideoComponent implements OnInit {
       this._uploadService.makeVideo(this.url+'video/add',this.video,this.token)
       .then((result: any) =>{
             this._router.navigate(['/home'])
+      },error =>{
+        this.status="error";
       })
   }
   fileChangeEvent(fileInput:any){

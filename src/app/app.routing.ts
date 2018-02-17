@@ -9,6 +9,7 @@ import { VideoComponent } from './components/video/video.component';
 import { AddVideoComponent } from './components/add-video/add-video.component';
 import { MyVideosComponent } from './components/my-videos/my-videos.component';
 import { UsersComponent } from './components/users/users.component';
+import { UserComponent } from './components/user/user.component';
 import {AuthGuard} from './services/auth.guard';
 const appRoutes : Routes = [
 
@@ -22,6 +23,7 @@ const appRoutes : Routes = [
 {path:'add-video',component:AddVideoComponent,canActivate:[AuthGuard]},
 {path:'my-videos',component:MyVideosComponent,canActivate:[AuthGuard]},
 {path:'users',component:UsersComponent,canActivate:[AuthGuard]},
+{path:'user/:id',component:UserComponent,canActivate:[AuthGuard]},
 {path:'users/:page',component:UsersComponent,canActivate:[AuthGuard]},
 {path:'**',component:HomeComponent,canActivate:[AuthGuard]},
 ];

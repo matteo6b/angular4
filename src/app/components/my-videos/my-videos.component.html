@@ -40,7 +40,7 @@
 
                 <div class="tab-pane" id="myVideos">
                   .<div class="row">
-                    <div *ngFor=" let video of user.myvideos " class="panel">
+                    <div *ngFor=" let video of user.myvideos " class="card">
 
                       <a [routerLink]="['/video-player', video._id ]" >
                         <div class="row">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="tab-pane" id="myFavorites">
                   .<div class="row">
-                    <div *ngFor=" let video of user.favorites " class="panel">
+                    <div *ngFor=" let video of user.favorites " class="card">
                       <a [routerLink]="['/video-player', video._id ]" >
                         <div class="row">
                         <div class="col-sm-12 ">
