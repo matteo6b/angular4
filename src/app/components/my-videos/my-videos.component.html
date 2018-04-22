@@ -1,7 +1,7 @@
 
-<div class="container">
+<div class="container" *ngIf="user">
     <div class="row my-2">
-      <div class="col-lg-4 order-lg-1 text-center img-profile">
+      <div class="col-lg-4 order-lg-1 text-center img-profile" >
         <img *ngIf="user.image" src="{{url+'get-image-file/'+ user.image}}" alt="image-user" width="200px" height="200px" >
           <img *ngIf="!user.image" src="assets/user.png" alt="image-user" width="200px" height="200px" >
 

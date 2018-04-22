@@ -32,7 +32,6 @@ constructor(
   profile(){
     this._userService.getUser(this.id).subscribe(response=>{
         this.user=response;
-          console.log(this.user);
     })
 
   }

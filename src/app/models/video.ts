@@ -1,4 +1,5 @@
 export class Video{
+  favorited:boolean;
  constructor(
    public _id:string,
    public title:string,

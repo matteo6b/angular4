@@ -22,6 +22,7 @@ import {UserService} from './services/user.service';
 import { UsersComponent } from './components/users/users.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { UserComponent } from './components/user/user.component';
+import { SnipperComponent } from './components/snipper/snipper.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UserComponent } from './components/user/user.component';
     UsersComponent,
     TimelineComponent,
     UserComponent,
+    SnipperComponent,
   ],
   imports: [
     BrowserModule,

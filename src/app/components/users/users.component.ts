@@ -23,6 +23,10 @@ export class UsersComponent implements OnInit {
   public follows;
   public nextPage;
   public prevPage;
+  throttle = 1000;
+scrollDistance = -2;
+public loading:boolean;
+
   constructor(
   private _route :ActivatedRoute,
   private _router: Router,
@@ -33,51 +37,55 @@ export class UsersComponent implements OnInit {
   this.identity=_userService.getIdentity();
   this.token=_userService.getToken();
   this.url=GLOBAL.url;
+  this.page=1;
+  this.loading=false
 
 
    }
 
   ngOnInit() {
-    this.actualPage();
-  }
-  actualPage(){
-    this._route.params.subscribe(params =>{
-      let page = +params['page'];
-      this.page=page;
-      if(!params['page']){
-        page=1;
-      }
-      if(!page){
-        page=1
-      }
-      else{
-        this.nextPage = page+1;
-        this.prevPage = page-1;
-        if(this.prevPage <=0){
-          this.prevPage = 1;
-        }
-      }
-        this.getUsers(page)
-    })
-  }
-  getUsers(page){
-
-    this._userService.getUsers(page).subscribe(
+    this._userService.getUsers(this.page).subscribe(
       response =>{
-        this.total=response.total;
+
         this.pages=response.pages;
         this.users=response.users;
         this.follows=response.usersFollowing;
 
       },
       error =>{
-          this._router.navigate(['/users',1])
 
         console.log(error);
       }
     )
-
   }
+  onScrollDown(ev) {
+    if(this.pages!=this.page){
+
+
+    this.page+=1;
+    console.log('scrolled down!!', ev);
+    this._userService.getUsers(this.page).subscribe(response=>{
+      response.users.map(r=>{
+      this.users.push(r);
+
+
+    })
+    response.usersFollowing.map(f=>{
+      this.follows.push(f)
+    })
+this.loading=true;
+
+
+  })
+}
+  }
+  onUp(){
+    this.page=-1;
+  }
+
+
+
+
   public followUserOver
   mouseEnter(user_id){
     this.followUserOver=user_id;

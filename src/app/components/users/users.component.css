@@ -10,3 +10,13 @@
 .label{
   padding: 0.5rem;
 }
+.card{
+  padding: 100px;
+
+
+}
+
+ .container{
+   height: 100%;
+   overflow: scroll;
+ }

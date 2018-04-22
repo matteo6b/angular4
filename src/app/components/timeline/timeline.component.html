@@ -12,7 +12,7 @@
           <source src="{{url}}{{video.video_src}}" >
         </video>
       </div>
-      <div class="col-sm-1 ">
+      <div class="col-sm-6 ">
         <img *ngIf="video.user.image" src="{{url+'get-image-file/'+ video.user.image}}" alt="image-user" width="75px" height="75px" >
           <img *ngIf="!video.user.image" src="assets/user.png" alt="image-user" width="75px" height="75px" >
           <p class="name"> {{video.user.name}}</p>

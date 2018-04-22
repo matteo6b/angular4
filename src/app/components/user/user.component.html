@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container"  *ngIf="user" >
     <div class="row my-2">
       <div class="col-lg-4 order-lg-1 text-center img-profile">
         <img *ngIf="user.user.image" src="{{url+'get-image-file/'+ user.user.image}}" alt="image-user" width="200px" height="200px" >
@@ -65,7 +65,7 @@
                 </div>
                 <div class="tab-pane" id="myFavorites">
                   .<div class="row">
-                    <div *ngFor=" let video of user.user.favorites " class="panel">
+                    <div *ngFor=" let video of user.user.favorites " class="card">
                       <a [routerLink]="['/video-player', video._id ]" >
                         <div class="row">
                         <div class="col-sm-12 ">

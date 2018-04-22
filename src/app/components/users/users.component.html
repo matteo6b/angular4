@@ -1,13 +1,24 @@
-.<div class="col-lg-8">
+<div class="container"
+infinite-scroll
+    [infiniteScrollDistance]="scrollDistance"
+         [infiniteScrollThrottle]="throttle"
+         (scrolled)="onScrollDown()"
+         (scrolledUp)="onUp()"
+>
+<div class="col-lg-8 "
+>
 <h1>{{title}}</h1>
-<div class="people">
+<div class=" people "
+
+
+    >
   <div *ngFor="let user of users" class="item-user">
     <div class="card ">
       <div class="card-block">
         <div class="image-user  pull-left">
-          <a href="#">
-              <img *ngIf="user.image" src="{{url+'get-image-file/'+ user.image}}" alt="image-user" width="75px" height="75px" >
-                <img *ngIf="!user.image" src="assets/user.png" alt="image-user" width="75px" height="75px" >
+          <a [routerLink]="['/user', user._id ]" >
+              <img *ngIf="user.image" src="{{url+'get-image-file/'+ user.image}}" alt="image-user" width="200px" height="200px" >
+                <img *ngIf="!user.image" src="assets/user.png" alt="image-user" width="200px" height="200px" >
           </a>
         </div>
 
@@ -38,9 +49,10 @@ stop following</span>
       </div>
     </div>
   </div>
+  <app-snipper
+  [hidden]="loading"
+
+  ></app-snipper>
 </div>
-<ul class="pagination pull-right">
-  <li *ngIf="pages!=page" class="page-item"><a [routerLink]="['/users',nextPage]">Next</a></li>
-  <li   *ngIf="page>1"class="page-item" ><a [routerLink]="['/users',prevPage]">Previous</a></li>
-</ul>
+
 </div>
