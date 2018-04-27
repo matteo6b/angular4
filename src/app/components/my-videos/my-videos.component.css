@@ -1,40 +1,24 @@
-.componente-lista{
-text-align: center;
-
-
-
-
+.sidebar {
+  padding: 5px 10px 10px;
+  background: #f3f3f3;
+  border-radius: 4px;
+}
+.tag-default {
+  color: #fff !important;
+  font-size: 0.8rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  white-space: nowrap;
+  margin-right: 3px;
+  margin-bottom: 0.2rem;
+  display: inline-block;
 }
 
-.search-results{
-  height: 100%;
+.tag-default {
+  background-color: #818a91;
 }
-h3{
-  text-align: center;
-    color: #0275d8;
-    padding: 1rem;
-}
-.card{
-  margin: 2rem 0.6rem;
-  background-color: #ffffe6;
-  width: 20rem;
-
-}
-.card video{
-  width: 20rem
-}
-.img-profile{
-  background-color: #99ccff;
-}
-#profile{
-  background-color: #ffffe6;
-}
-.componente-lista .card a{
-
-    text-decoration: none;
-}
-
-.componente-lista .card a:hover{
-
-    background:#F6F6F6;
+.tag-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
 }

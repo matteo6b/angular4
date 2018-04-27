@@ -1,49 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import {Router,ActivatedRoute,Params} from '@angular/router';
-import {GLOBAL} from '../../services/global';
-import {VideoService} from '../../services/video.service'
-import {UserService} from '../../services/user.service'
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { GLOBAL } from '../../services/global';
+import { VideoService } from '../../services/video.service';
+import { UserService } from '../../services/user.service';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
-  selector: 'timeline',
+  selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css'],
-    providers: [VideoService,UserService]
+  providers: [VideoService, UserService]
 })
 export class TimelineComponent implements OnInit {
-
-  public url:String
-  public title:string;
+  public url: String;
+  public title: string;
   public page;
   public total;
   public pages;
-  public videos:any[];
+  public videos: any[];
   constructor(
-    private _route:ActivatedRoute,
-    private router:Router,
-    private _userService:UserService,
-    private _videoService:VideoService,
+    private _route: ActivatedRoute,
+    private router: Router,
+    private _userService: UserService,
+    private _videoService: VideoService,
+    private sanitizer: DomSanitizer
   ) {
-this.url= GLOBAL.url;
-this.title="Timeline"
-this.page = 1;
-this.ngOnInit()
+    this.url = GLOBAL.url;
+    this.title = 'Timeline';
+    this.page = 1;
   }
 
   ngOnInit() {
     this.getTimeLine(this.page);
-
   }
-  getTimeLine(page){
-      this._videoService.getTimeLine(page).subscribe(response=>{
-          console.log("hola")
-        this.videos=response.videos;
-        this.pages= response.pages;
-        this.total= response.total;
+  getTimeLine(page) {
+    this._videoService.getTimeLine(page).subscribe(
+      response => {
+        console.log('hola');
+        this.videos = response.videos;
+        this.pages = response.pages;
+        this.total = response.total;
       },
-    error =>{
-
-    })
-
+      error => {}
+    );
   }
-
 }

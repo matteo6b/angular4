@@ -1,22 +1,4 @@
-.image-user{
-  border-radius: 500px;
-  overflow: hidden;
-  margin: 0px 14px;
-}
-.user-name{
+.user-name {
   margin-top: 20px;
   font-weight: bold;
 }
-.label{
-  padding: 0.5rem;
-}
-.card{
-  padding: 100px;
-
-
-}
-
- .container{
-   height: 100%;
-   overflow: scroll;
- }

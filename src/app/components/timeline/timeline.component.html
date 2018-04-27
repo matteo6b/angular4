@@ -1,4 +1,4 @@
-<div class="col-lg-8">
+<!--<div class="col-lg-8">
 <h1>{{title}}</h1>
 .<div class="row">
   <div *ngFor=" let video of videos" class="card">
@@ -29,4 +29,87 @@
   </div>
 </div>
         <a class="button btn btn-success">See More</a>
+</div>-->
+
+
+
+<div *ngIf="videos!=null">
+  <div class="noData" *ngIf=" videos.length==0">
+    <h3>No Data Found</h3>
+  </div>
+
+  <div class="row" *ngFor=" let video of videos">
+    <div class="col-md-12 timeline-dot">
+      <div class="social-timelines p-relative">
+        <div class="row timeline-right p-t-35">
+          <div class="col-2 col-sm-2 col-xl-1">
+            <div class="social-timelines-left">
+              <img class="img-radius timeline-icon" *ngIf="video.user.image" src="{{url+'get-image-file/'+ video.user.image}}" alt="image-user">
+              <img class="img-radius timeline-icon" *ngIf="!video.user.image" src="assets/user.png" alt="image-user">
+
+            </div>
+          </div>
+          <div class="col-10 col-sm-10 col-xl-11 p-l-5 p-b-35">
+            <div class="card">
+              <div class="card-block post-timelines">
+
+                <div class="chat-header f-w-600"> posted on your timeline {{video.user.name}}</div>
+
+              </div>
+              <vg-player class="img-fluid width-100">
+                <vg-overlay-play></vg-overlay-play>
+                <vg-buffering></vg-buffering>
+
+                <vg-scrub-bar>
+                  <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                  <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                </vg-scrub-bar>
+
+                <vg-controls>
+                  <vg-play-pause></vg-play-pause>
+                  <vg-playback-button></vg-playback-button>
+
+                  <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+                  <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+
+                  <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+
+                  <vg-mute></vg-mute>
+                  <vg-volume></vg-volume>
+
+                  <vg-fullscreen></vg-fullscreen>
+                </vg-controls>
+
+                <video [vgMedia]="media" #media>
+                  <source [src]="sanitizer.bypassSecurityTrustResourceUrl(url+video.video_src)" type="video/mp4">
+
+                </video>
+              </vg-player>
+              <div class="card-block">
+                <div class="timeline-details">
+                  <a [routerLink]="['/video-player', video._id ]">
+                    <h4>{{video.title}}</h4>
+                  </a>
+                  <div class="sidebar">
+                    <div class="tag-list">
+                      <a *ngFor="let tag of video.tags" (click)="setListTo(tag)" class="tag-default tag-pill">
+                        #{{ tag }}
+                      </a>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

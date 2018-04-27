@@ -1,35 +1,10 @@
-.componente-lista{
-text-align: center;
-
-
-
-
+.nav-link {
+  cursor: pointer;
 }
 
-.search-results{
-  height: 100%;
+.tag-pill {
+  cursor: pointer;
 }
-h3{
-  text-align: center;
-    color: #0275d8;
-    padding: 1rem;
-}
-.card{
-  margin: 2rem 0.6rem;
-  background-color: #ffffe6;
-  width: 20rem;
-  display: inline-block;
-}
-.card video{
-  width: 20rem
-}
-
-.componente-lista .card a{
-
-    text-decoration: none;
-}
-
-.componente-lista .card a:hover{
-
-    background:#F6F6F6;
+.social-tabs {
+  margin: 1rem;
 }

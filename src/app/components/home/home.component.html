@@ -1,49 +1,138 @@
-
-
+<!--
 
 <div class="row">
 
 
-<div class="col-sm-12">
+  <div class="col-sm-12">
 
-  <div class="container componente-lista">
-  <h3>Last Additions</h3>
-    <div *ngFor=" let video of videos " class="card">
+    <div class="container componente-lista">
+      <h3>Last Additions</h3>
+      <div *ngFor=" let video of videos " class="card">
 
-      <a [routerLink]="['/video-player', video._id ]" >
+
         <div class="row">
 
 
-        <div class="col-sm-12 ">
-          <video   controls >
-            <source src="{{url}}{{video.video_src}}" type="video/mp4" >
-          </video>
+          <div class="col-sm-12 ">
+
+            <vg-player>
+              <vg-overlay-play></vg-overlay-play>
+              <vg-buffering></vg-buffering>
+
+              <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar>
+
+              <vg-controls>
+                <vg-play-pause></vg-play-pause>
+                <vg-playback-button></vg-playback-button>
+
+                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+
+                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+
+                <vg-mute></vg-mute>
+                <vg-volume></vg-volume>
+
+                <vg-fullscreen></vg-fullscreen>
+              </vg-controls>
+
+              <video [vgMedia]="media" #media id="singleVideo" crossorigin>
+                <source [src]="sanitizer.bypassSecurityTrustResourceUrl(url+video.video_src)" type="video/mp4">
+
+              </video>
+            </vg-player>
+
+          </div>
         </div>
-</div>
-  </a>
-<div class="row">
+
+        <div class="row">
 
 
-        <div class="detalles col-sm-6 ">
-          <h3> {{video.title}} </h3>
-          <p> {{video.description}} </p>
+          <div class="detalles col-sm-6 ">
+            <a [routerLink]="['/video-player', video._id ]">
+              <h3> {{video.title}} </h3>
+            </a>
+            <p> {{video.description}} </p>
 
+          </div>
+
+          <div class="col-sm-6">
+            <like [video]="video" [likesCount]="video.favoritesCount" (toggle)="onToggleFavorite(video,$event)"></like>
+          </div>
         </div>
 
-        <div class="col-sm-6">
-          <like [video]="video"
-           [likesCount]="video.favoritesCount" (toggle)="onToggleFavorite(video,$event)"  ></like>
-        </div>
-</div>
 
 
+      </div>
 
     </div>
 
-</div>
 
 
+  </div>
 
-</div>
+</div>-->
+
+<div class="container">
+  <div class="col-xl-9 col-lg-8 col-md-8 col-xs-12 ">
+
+    <div class="card social-tabs">
+      <ul class="nav nav-tabs  nav-justified" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link " data-toggle="tab" role="tab" [ngClass]="{'active': listConfig.type === 'Global'}" (click)="setListTo('Global')">Feed Global</a>
+
+
+          <div class="slide"></div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" role="tab" [ngClass]="{'active': listConfig.type === 'favorite'}" (click)="setListTo('favorite')">Feed Favorites</a>
+
+          <div class="slide"></div>
+        </li>
+        <li class="nav-item" *ngIf="tag!=''">
+          <a class="nav-link active" data-toggle="tab" role="tab">{{tag}}</a>
+          <div class="slide"></div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane active" id="timeline">
+
+    </div>
+
+    <div class="tab-pane" id="about">
+      <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="tab-pane" id="myvideos">
+      <div class="row">
+        <div class="col-lg-12 col-xl-6">
+          <div class="card">
+            <div class="card-block post-timelines">
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
 
 </div>

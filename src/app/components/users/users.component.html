@@ -1,58 +1,48 @@
-<div class="container"
-infinite-scroll
-    [infiniteScrollDistance]="scrollDistance"
-         [infiniteScrollThrottle]="throttle"
-         (scrolled)="onScrollDown()"
-         (scrolledUp)="onUp()"
->
-<div class="col-lg-8 "
->
-<h1>{{title}}</h1>
-<div class=" people "
+<div class="container" infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()">
+  <div class="col-lg-8 ">
+    <h1>{{title}}</h1>
+    <div class=" people ">
+      <div *ngFor="let user of users" class="item-user">
+        <div class="card ">
+          <div class="card-block">
+            <div class="image-user  row">
+              <a [routerLink]="['/user', user._id ]">
+                <img *ngIf="user.image" [src]=" sanitizer.bypassSecurityTrustResourceUrl(url+'get-image-file/'+ user.image)" alt="image-user"
+                  width="200px" height="200px">
+                <img *ngIf="!user.image" [src]="sanitizer.bypassSecurityTrustResourceUrl('assets/user.png')" alt="image-user" width="200px"
+                  height="200px">
+              </a>
+            </div>
 
+            <div class="user-name pull-left">
+              <a [routerLink]="['/user', user._id ]">
+                {{user.name+' '+user.surname}}
+              </a>
+            </div>
+            <div class="pull-right" *ngIf="user._id!=identity._id">
 
-    >
-  <div *ngFor="let user of users" class="item-user">
-    <div class="card ">
-      <div class="card-block">
-        <div class="image-user  pull-left">
-          <a [routerLink]="['/user', user._id ]" >
-              <img *ngIf="user.image" src="{{url+'get-image-file/'+ user.image}}" alt="image-user" width="200px" height="200px" >
-                <img *ngIf="!user.image" src="assets/user.png" alt="image-user" width="200px" height="200px" >
-          </a>
+              <button (click)="followUser(user._id)" class="btn btn-success" *ngIf="follows.indexOf(user._id)< 0">
+                <i class="fa fa-plus-circle"></i>
+                <span class="label">Follow</span>
+              </button>
+              <button class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)"
+                [class.btn-danger]="followUserOver==user._id" (click)="unFollowUser(user._id)">
+                <span *ngIf="followUserOver==user._id; else following">
+                  <i class="fa fa-minus-circle"></i>
+                  <span class="label">
+                    stop following</span>
+                </span>
+                <ng-template #following>
+                  <i class="fa fa-check-circle"></i>
+                  <span class="label">Following</span>
+                </ng-template>
+              </button>
+            </div>
+          </div>
         </div>
-
-      <div class="user-name pull-left">
-          <a [routerLink]="['/user', user._id ]" >
-        {{user.name+' '+user.surname}}
-          </a>
       </div>
-      <div class="pull-right" *ngIf="user._id!=identity._id">
-
-        <button (click)="followUser(user._id)" class="btn btn-success" *ngIf="follows.indexOf(user._id)< 0"><i class="fa fa-plus-circle" ></i><span class="label">Follow</span></button>
-        <button  class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0"
-          (mouseenter)="mouseEnter(user._id)"
-          (mouseleave)="mouseLeave(user._id)"
-          [class.btn-danger]="followUserOver==user._id"
-          (click)="unFollowUser(user._id)"
-          >
-          <span *ngIf="followUserOver==user._id; else following">
-          <i class="fa fa-minus-circle" ></i><span class="label">
-stop following</span>
-        </span>
-      <ng-template #following>
-        <i class="fa fa-check-circle" ></i>
-<span class="label">Following</span>
-      </ng-template>
-        </button>
-      </div>
-      </div>
+      <app-snipper [hidden]="loading"></app-snipper>
     </div>
+
   </div>
-  <app-snipper
-  [hidden]="loading"
-
-  ></app-snipper>
-</div>
-
 </div>

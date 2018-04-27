@@ -1,98 +1,255 @@
-
 <div class="container" *ngIf="user">
-    <div class="row my-2">
-      <div class="col-lg-4 order-lg-1 text-center img-profile" >
-        <img *ngIf="user.image" src="{{url+'get-image-file/'+ user.image}}" alt="image-user" width="200px" height="200px" >
-          <img *ngIf="!user.image" src="assets/user.png" alt="image-user" width="200px" height="200px" >
+  <div class="row">
+    <div class="col-sm-12">
+      <div>
+        <div class="content social-timeline">
+          <div class="">
 
-      </div>
-        <div class="col-lg-8 order-lg-2">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#myVideos" data-toggle="tab" class="nav-link">My Videos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#myFavorites" data-toggle="tab" class="nav-link">My Favorites</a>
-                </li>
-            </ul>
-            <div class="tab-content py-4">
-                <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">User Profile</h5>
+            <div class="row">
+              <div class="col-md-12">
+
+                <div class="social-wallpaper">
+
+                  <div class="profile-hvr">
+                    <i class="icofont icofont-ui-edit p-r-10"></i>
+                    <i class="icofont icofont-ui-delete"></i>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-3 col-lg-4 col-md-4 col-xs-12">
+
+                <div class="social-timeline-left">
+
+                  <div class="card">
+                    <div class="social-profile">
+                      <img *ngIf="user.image" [src]="sanitizer.bypassSecurityTrustResourceUrl(url+'get-image-file/'+ user.image)" alt="image-user"
+                        class="img-fluid width-100">
+                      <img *ngIf="!user.image" [src]="sanitizer.bypassSecurityTrustResourceUrl('assets/user.png')" alt="image-user" class="img-fluid width-100">
+                      <div class="profile-hvr m-t-15">
+                        <i class="icofont icofont-ui-edit p-r-10"></i>
+                        <i class="icofont icofont-ui-delete"></i>
+                      </div>
+                    </div>
+                    <div class="card-block social-follower">
+                      <h4>{{user.name}} {{user.surname}}</h4>
+
+
+
+                    </div>
+                  </div>
+
+
+
+
+
+                </div>
+
+              </div>
+              <div class="col-xl-9 col-lg-8 col-md-8 col-xs-12 col-sm-12">
+
+                <div class="card social-tabs">
+                  <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">Timeline</a>
+                      <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#about" role="tab">About</a>
+                      <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#myvideos" role="tab">My Videos</a>
+                      <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#myfavorites" role="tab">My favorites</a>
+                      <div class="slide"></div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="tab-content">
+                  <div class="tab-pane active" id="timeline">
+                    <app-timeline></app-timeline>
+                  </div>
+
+                  <div class="tab-pane" id="about">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h6>About</h6>
-                            <p>
-                                {{user.name}}  {{user.surname}}
-                            </p>
-                            <h6>Email</h6>
-                            <p>
-                                {{user.email}}
-                            </p>
+                      <div class="col-sm-12">
+                        <div class="card">
+                          <div class="card-header">
+                            <h5 class="card-header-text">Basic Information</h5>
+                            <button id="edit-btn" type="button" class="btn btn-primary waves-effect waves-light f-right">
+                              <i class="icofont icofont-edit"></i>
+                            </button>
+                          </div>
+                          <div class="card-block">
+                            <div id="view-info" class="row">
+                              <div class="col-lg-6 col-md-12">
+                                <form>
+                                  <table class="table table-responsive m-b-0">
+                                    <tbody>
+                                      <tr>
+                                        <th class="social-label b-none p-t-0">Full Name
+                                        </th>
+                                        <td class="social-user-name b-none p-t-0 text-muted">{{user.name}} {{user.surname}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th class="social-label b-none">Email</th>
+                                        <td class="social-user-name b-none text-muted">{{user.email}}</td>
+                                      </tr>
+
+                                    </tbody>
+                                  </table>
+                                </form>
+                              </div>
+                            </div>
+
+                          </div>
                         </div>
+                      </div>
 
-                        </div>
-                        <timeline></timeline>
-                    </div>
-                    <!--/row-->
-
-                <div class="tab-pane" id="myVideos">
-                  .<div class="row">
-                    <div *ngFor=" let video of user.myvideos " class="card">
-
-                      <a [routerLink]="['/video-player', video._id ]" >
-                        <div class="row">
-
-
-                        <div class="col-sm-12 ">
-                          <video   controls>
-                            <source src="{{url}}{{video.video_src}}" >
-                          </video>
-                        </div>
-                </div>
-                  </a>
-                <div class="row">
-                        <div class="detalles col-sm-12 ">
-                          <h3> {{video.title}} </h3>
-                          <p> {{video.description}} </p>
-
-                        </div>
-                </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane" id="myFavorites">
-                  .<div class="row">
-                    <div *ngFor=" let video of user.favorites " class="card">
-                      <a [routerLink]="['/video-player', video._id ]" >
-                        <div class="row">
-                        <div class="col-sm-12 ">
-                          <video   controls>
-                            <source src="{{url}}{{video.video_src}}" >
-                          </video>
-                        </div>
-                </div>
-                  </a>
-                <div class="row">
-
-
-                        <div class="detalles col-sm-12 ">
-                          <h3> {{video.title}} </h3>
-                          <p> {{video.description}} </p>
-
-                        </div>
-
-
-                </div>
 
                     </div>
                   </div>
+
+                  <div class="tab-pane" id="myvideos">
+                    <div class="row">
+                      <div class="noData" *ngIf="user.myvideos.length==0">
+                        <h3>No data Found</h3>
+                      </div>
+
+                      <div class="col-lg-12 col-xl-6" *ngFor="let video of user.myvideos">
+                        <div class="card">
+
+
+                          <div class="card-block post-timelines">
+                            <a [routerLink]="['/video-player', video._id ]">
+                              <h3>{{video.title}}</h3>
+                            </a>
+                            <vg-player class="img-fluid width-100">
+                              <vg-overlay-play></vg-overlay-play>
+                              <vg-buffering></vg-buffering>
+
+                              <vg-scrub-bar>
+                                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                              </vg-scrub-bar>
+
+                              <vg-controls>
+                                <vg-play-pause></vg-play-pause>
+                                <vg-playback-button></vg-playback-button>
+
+                                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+                                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+
+                                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+
+                                <vg-mute></vg-mute>
+                                <vg-volume></vg-volume>
+
+                                <vg-fullscreen></vg-fullscreen>
+                              </vg-controls>
+
+                              <video [vgMedia]="media" #media>
+                                <source [src]="sanitizer.bypassSecurityTrustResourceUrl(url+video.video_src)" type="video/mp4">
+
+                              </video>
+                            </vg-player>
+                            <div class="sidebar">
+                              <div class="tag-list">
+                                <a *ngFor="let tag of video.tags" (click)="setListTo(tag)" class="tag-default tag-pill">
+                                  #{{ tag }}
+                                </a>
+                              </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+                  <div class="tab-pane" id="myfavorites">
+                    <div class="row">
+                      <div class="noData" *ngIf="user.favorites.length==0">
+                        <h3>No data Found</h3>
+                      </div>
+                      <div class="col-lg-12 col-xl-6" *ngFor="let video of user.favorites">
+                        <div class="card">
+
+
+                          <div class="card-block post-timelines">
+                            <a [routerLink]="['/video-player', video._id ]">
+                              <h3>{{video.title}}</h3>
+                            </a>
+                            <vg-player class="img-fluid width-100">
+                              <vg-overlay-play></vg-overlay-play>
+                              <vg-buffering></vg-buffering>
+
+                              <vg-scrub-bar>
+                                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                              </vg-scrub-bar>
+
+                              <vg-controls>
+                                <vg-play-pause></vg-play-pause>
+                                <vg-playback-button></vg-playback-button>
+
+                                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+                                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+
+                                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+
+                                <vg-mute></vg-mute>
+                                <vg-volume></vg-volume>
+
+                                <vg-fullscreen></vg-fullscreen>
+                              </vg-controls>
+
+                              <video [vgMedia]="media" #media>
+                                <source [src]="sanitizer.bypassSecurityTrustResourceUrl(url+video.video_src)" type="video/mp4">
+
+                              </video>
+                            </vg-player>
+                            <div class="sidebar">
+                              <div class="tag-list">
+                                <a *ngFor="let tag of video.tags" (click)="setListTo(tag)" class="tag-default tag-pill">
+                                  #{{ tag }}
+                                </a>
+                              </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
                 </div>
 
-        </div>
+              </div>
+            </div>
           </div>
-
+        </div>
+      </div>
     </div>
+  </div>
 </div>

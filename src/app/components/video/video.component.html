@@ -1,33 +1,33 @@
-<div class="container" >
+<!--<div class="container">
 
- <div *ngIf="videoInfo" class="videoInfo" >
+  <div *ngIf="videoInfo" class="videoInfo">
     <div class="videoContainer">
 
-      <video #videoPlayer (loadedmetadata)="onMetadata($event, videoPlayer)" (timeupdate)="onTimeUpdate($event, videoPlayer)" >
-        <source src="{{url}}{{videoInfo.video_src}}">
+      <video #videoPlayer (loadedmetadata)="onMetadata($event, videoPlayer)" (timeupdate)="onTimeUpdate($event, videoPlayer)" preload=”none”>
+        <source src="{{url}}{{videoInfo.video_src}}" type="video/mp4" >
       </video>
 
       <div class="progreso">
-        <div class="barra"  [ngStyle]="{'width': progreso + '%'}"    ></div>
+        <div class="barra" [ngStyle]="{'width': progreso + '%'}"></div>
       </div>
 
     </div>
 
     <div class="row">
       <div class="controles ">
-        <div class="col-sm-4 pull-left text-center" (click)=" reproducirVideo()" >
+        <div class="col-sm-4 pull-left text-center" (click)=" reproducirVideo()">
 
           <i class="fa fa-play"></i>
         </div>
 
-        <div class="col-sm-4 pull-left text-center" (click)=" pausarVideo()" >
+        <div class="col-sm-4 pull-left text-center" (click)=" pausarVideo()">
 
           <i class="fa fa-pause"></i>
         </div>
 
 
 
-        <div  class="col-sm-4 pull-left text-center" (click)=" detenerVideo()" >
+        <div class="col-sm-4 pull-left text-center" (click)=" detenerVideo()">
 
           <i class="fa fa-stop"></i>
         </div>
@@ -37,29 +37,162 @@
     </div>
 
     <div class="detalles">
-        <h1> {{videoInfo.title}}  <div class="tiempo">
-           ( <span  *ngIf="posicion"> {{posicion}} /</span>  {{duracion }} )
-         </div>  </h1>
+      <h1> {{videoInfo.title}}
+        <div class="tiempo">
+          (
+          <span *ngIf="posicion"> {{posicion}} /</span> {{duracion }} )
+        </div>
+      </h1>
 
-        <p>Description: {{videoInfo.description}} </p>
-        <a >
+      <p>Description: {{videoInfo.description}} </p>
+      <a>
         <div class="row user">
           <div class="sm-12 columns">
-            <img *ngIf="videoInfo.user.image" src="{{url+'get-image-file/'+ videoInfo.user.image}}" alt="image-user" width="75px" height="75px" >
-              <img *ngIf="!videoInfo.user.image" src="assets/user.png" alt="image-user" width="75px" height="75px" >
+            <img *ngIf="videoInfo.user.image" src="{{url+'get-image-file/'+ videoInfo.user.image}}" alt="image-user" width="75px" height="75px">
+            <img *ngIf="!videoInfo.user.image" src="assets/user.png" alt="image-user" width="75px" height="75px">
           </div>
           <div class="sm-12 columns text-center">
             Creator: {{videoInfo.user.name}} {{videoInfo.user.surname}}
           </div>
 
         </div>
-        </a>
+      </a>
     </div>
+  </div>
+
+
+
+
+
+
+</div>-->
+<div class="container" *ngIf="videoInfo">
+  <div class="row">
+    <div class="co-lg-12 col-xs-12 col-sm-12 col-md-12">
+
+
+      <vg-player class="embed-responsive embed-responsive-16by9">
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+
+        <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+        </vg-scrub-bar>
+
+        <vg-controls>
+          <vg-play-pause></vg-play-pause>
+          <vg-playback-button></vg-playback-button>
+
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+          <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+
+          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+
+          <vg-mute></vg-mute>
+          <vg-volume></vg-volume>
+
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+
+        <video [vgMedia]="media" #media id="singleVideo">
+          <source [src]="sanitizer.bypassSecurityTrustResourceUrl(url+videoInfo.video_src)" type="video/mp4">
+
+        </video>
+      </vg-player>
+
+
+
+
+
+
+
+
+
     </div>
 
+  </div>
+  <div class="row detail ">
+    <div class="co-lg-12 col-xs-12 col-sm-12 col-md-12  ">
+      <div class="card">
+        <div class="row">
+          <div class="col-sm-6 col-lg-6  col-xs-6 col-md-6">
+            <h1 class="title">{{videoInfo.title}}</h1>
+          </div>
+          <div class="col-sm-3 col-lg-3 col-md-3  col-xs-3 like">
+
+            <app-like [video]="videoInfo" [likesCount]="videoInfo.favoritesCount" (toggle)="onToggleFavorite(videoInfo,$event)"></app-like>
+
+
+          </div>
+          <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3  like ">
+
+            <div class="sidebar">
+              <div class="tag-list">
+                <a *ngFor="let tag of videoInfo.tags" (click)="setListTo(tag)" class="tag-default tag-pill">
+                  #{{ tag }}
+                </a>
+              </div>
+
+
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="row">
+          <div class="col-sm-6 col-lg-6  col-xs-6 col-md-6">
+            <div class="float-left  follow">
+              <img *ngIf="videoInfo.user.image" [src]="sanitizer.bypassSecurityTrustResourceUrl(url+'get-image-file/'+ videoInfo.user.image)"
+                alt="image-user" width="75px" height="75px">
+              <img *ngIf="!videoInfo.user.image" [src]="sanitizer.bypassSecurityTrustResourceUrl('assets/user.png')" alt="image-user" width="75px"
+                height="75px">
+              <span>
+                <strong>{{videoInfo.user.name}}</strong>
+              </span>
+              <p>Publicated {{videoInfo.created_at | date}}</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-6 col-md-6  col-xs-6 clearfix">
+
+
+            <div class="float-right follow" *ngIf="videoInfo.user._id!=identity._id">
+              <button (click)="followUser(videoInfo.user._id)" class="btn btn-success" *ngIf="following== null">
+                <i class="fa fa-plus-circle"></i>
+                <span class="label">Follow</span>
+              </button>
+              <button class="btn btn-primary" *ngIf="following!=null" (mouseenter)="mouseEnter(videoInfo.user._id)" (mouseleave)="mouseLeave(videoInfo.user._id)"
+                [class.btn-danger]="followUserOver==videoInfo.user._id" (click)="unFollowUser(videoInfo.user._id)">
+                <span *ngIf="followUserOver==videoInfo.user._id; else following">
+                  <i class="fa fa-minus-circle"></i>
+                  <span class="label">
+                    stop following</span>
+                </span>
+                <ng-template #following>
+                  <i class="fa fa-check-circle"></i>
+                  <span class="label">Following</span>
+                </ng-template>
+              </button>
+            </div>
 
 
 
+          </div>
 
+        </div>
+        <div class="row">
+          <div class="co-lg-12 col-xs-12 col-sm-12 col-md-12 follow ">
+            <p>{{videoInfo.description}}</p>
+          </div>
+        </div>
 
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,15 +1,10 @@
+<div>
+  <span (click)="onClick()" [ngClass]="{'highlighted': video.favorited }">
 
-<span
-  (click)="onClick()"
-  [ngClass]="{'highlighted': video.favorited }"
-  >
-
-  <i class="fa fa-thumbs-up fa-2x"></i>
-</span>
-<span>{{ likesCount }}</span>
-<span
-  (click)="onunFavorite()"
-  [ngClass]="{'highlighted': !video.favorited }"
-  >
-  <i class="fa fa-thumbs-down fa-2x"></i>
-</span>
+    <i class="fa fa-thumbs-up fa-2x"></i>
+  </span>
+  <span>{{ likesCount }}</span>
+  <span (click)="onunFavorite()" [ngClass]="{'highlighted': !video.favorited }">
+    <i class="fa fa-thumbs-down fa-2x"></i>
+  </span>
+</div>
