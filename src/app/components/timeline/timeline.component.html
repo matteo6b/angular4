@@ -37,8 +37,8 @@
   <div class="noData" *ngIf=" videos.length==0">
     <h3>No Data Found</h3>
   </div>
-
-  <div class="row" *ngFor=" let video of videos">
+<div class="container"   infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()" >
+  <div class="row"  *ngFor=" let video of videos">
     <div class="col-md-12 timeline-dot">
       <div class="social-timelines p-relative">
         <div class="row timeline-right p-t-35">
@@ -56,6 +56,7 @@
                 <div class="chat-header f-w-600"> posted on your timeline {{video.user.name}}</div>
 
               </div>
+              <a [routerLink]="['/video-player', video._id ]">
               <vg-player class="img-fluid width-100">
                 <vg-overlay-play></vg-overlay-play>
                 <vg-buffering></vg-buffering>
@@ -88,6 +89,7 @@
 
                 </video>
               </vg-player>
+            </a>
               <div class="card-block">
                 <div class="timeline-details">
                   <a [routerLink]="['/video-player', video._id ]">
@@ -112,4 +114,5 @@
       </div>
     </div>
   </div>
+  <app-snipper [hidden]="loading"></app-snipper>
 </div>

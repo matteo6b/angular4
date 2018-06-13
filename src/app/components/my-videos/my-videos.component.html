@@ -132,7 +132,7 @@
                           <div class="card-block post-timelines">
                             <a [routerLink]="['/video-player', video._id ]">
                               <h3>{{video.title}}</h3>
-                            </a>
+                          
                             <vg-player class="img-fluid width-100">
                               <vg-overlay-play></vg-overlay-play>
                               <vg-buffering></vg-buffering>
@@ -165,6 +165,7 @@
 
                               </video>
                             </vg-player>
+                          </a>
                             <div class="sidebar">
                               <div class="tag-list">
                                 <a *ngFor="let tag of video.tags" (click)="setListTo(tag)" class="tag-default tag-pill">
@@ -194,7 +195,7 @@
                           <div class="card-block post-timelines">
                             <a [routerLink]="['/video-player', video._id ]">
                               <h3>{{video.title}}</h3>
-                            </a>
+                            
                             <vg-player class="img-fluid width-100">
                               <vg-overlay-play></vg-overlay-play>
                               <vg-buffering></vg-buffering>
@@ -227,6 +228,7 @@
 
                               </video>
                             </vg-player>
+                          </a>
                             <div class="sidebar">
                               <div class="tag-list">
                                 <a *ngFor="let tag of video.tags" (click)="setListTo(tag)" class="tag-default tag-pill">

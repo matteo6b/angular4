@@ -58,8 +58,9 @@ export class UsersComponent implements OnInit {
     );
   }
   onScrollDown() {
-    this.loading = false;
+   
     if (this.pages !== this.page) {
+      this.loading = false;
       this.page += 1;
       console.log('scrolled down!!');
       this._userService.getUsers(this.page).subscribe(response => {

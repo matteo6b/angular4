@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('this.videos');
     this.getVideos();
   }
   onToggleFavorite(video: any, favorited: boolean) {
@@ -34,9 +35,11 @@ export class HomeComponent implements OnInit {
   getVideos() {
     this._videoService.getVideos().subscribe(
       response => {
-        this.videos = response;
+       console.log(response)
+        
       },
-      error => {}
+      error => {
+      }
     );
   }
   onScroll() {}

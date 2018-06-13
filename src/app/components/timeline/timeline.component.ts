@@ -17,6 +17,9 @@ export class TimelineComponent implements OnInit {
   public total;
   public pages;
   public videos: any[];
+  throttle = 1000;
+  scrollDistance = -2;
+  public loading: boolean;
   constructor(
     private _route: ActivatedRoute,
     private router: Router,
@@ -27,6 +30,7 @@ export class TimelineComponent implements OnInit {
     this.url = GLOBAL.url;
     this.title = 'Timeline';
     this.page = 1;
+    this.loading = false;
   }
 
   ngOnInit() {
@@ -35,7 +39,7 @@ export class TimelineComponent implements OnInit {
   getTimeLine(page) {
     this._videoService.getTimeLine(page).subscribe(
       response => {
-        console.log('hola');
+        this.loading = true;
         this.videos = response.videos;
         this.pages = response.pages;
         this.total = response.total;
@@ -43,4 +47,18 @@ export class TimelineComponent implements OnInit {
       error => {}
     );
   }
+  onScrollDown() {
+    if (this.pages !== this.page) {
+      this.loading = false;
+      this.page += 1;
+      console.log('scrolled down!!');
+      this._videoService.getTimeLine(this.page).subscribe(response => {
+        response.videos.map(r => {
+          this.videos.push(r);
+        });
+        this.loading = true;
+      });
+    }
+  }
+
 }
