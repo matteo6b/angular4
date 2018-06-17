@@ -61,4 +61,9 @@ export class TimelineComponent implements OnInit {
     }
   }
 
+  setListTo(tag:string){
+      this.router.navigate(['tag',tag])
+
+  }
+
 }

@@ -1,7 +1,7 @@
 
 <div class="container"   infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()" >
     <div class="title">
-        <h3>Last Additions</h3>
+        <h3>#{{tag}}</h3>
     </div>
 
 <div class="row">
@@ -66,4 +66,3 @@
 
 <app-snipper [hidden]="loading"></app-snipper>
 </div>
-

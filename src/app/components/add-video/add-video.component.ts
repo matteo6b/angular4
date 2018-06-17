@@ -19,6 +19,7 @@ export class AddVideoComponent implements OnInit {
   public video: Video;
   public status: string;
   public urlVideo;
+  public loading;
   window = window.URL;
   constructor(
     private _videoService: VideoService,
@@ -31,17 +32,20 @@ export class AddVideoComponent implements OnInit {
     this.video = new Video('', '', '', new File([''], 'video'), []);
     this.token = _userService.getToken();
     this.url = GLOBAL.url;
+    this.loading=true;
   }
 
   ngOnInit() {}
   onsubmit() {
     this.ngProgress.start();
+    this.loading=false;
     console.log(this.video.tags);
     this._uploadService
       .makeVideo(this.url + 'video/add', this.video, this.token)
       .then(
         (result: any) => {
           this.ngProgress.done();
+          this.loading=true;
           this._router.navigate(['/home']);
         },
         error => {

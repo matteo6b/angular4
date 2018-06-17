@@ -1,6 +1,6 @@
 <div class="container ">
   <div class="row">
-    <div class="col-sm-6 col-xs-6  form">
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 form">
       <h1>Add Video</h1>
       <div class="alert alert-danger" *ngIf="status == 'error'">
         Error no saved video must MP4
@@ -71,20 +71,22 @@
             </video>
           </vg-player>
         </div>
-
+        <app-snipper [hidden]="loading"></app-snipper>
         <div class="form-group">
           <label for="">Tags</label>
           <tag-input [(ngModel)]='video.tags' theme='bootstrap' name="tags" #tags="ngModel" required></tag-input>
 
         </div>
 
-        <ng-progress [positionUsing]="'marginLeft'" [direction]="'leftToRightIncreased'" [color]="'#4286f4'" [trickleSpeed]="500"
+        <ng-progress [positionUsing]="'marginLeft'" [direction]="'leftToRightIncreased'" [color]="'red'" [trickleSpeed]="500"
           [thick]="true" [ease]="'easeInSine'"></ng-progress>
-
+         
         <button type="submit" class="btn btn-primary" [disabled]="!videoForm.form.valid">
           Saved video</button>
+           
       </form>
 
     </div>
   </div>
+
 </div>

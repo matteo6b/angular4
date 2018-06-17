@@ -31,6 +31,7 @@ import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
+import { TagComponent } from './components/tag/tag.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { VgBufferingModule } from 'videogular2/buffering';
     UsersComponent,
     TimelineComponent,
     UserComponent,
-    SnipperComponent
+    SnipperComponent,
+    TagComponent
   ],
   imports: [
     BrowserModule,

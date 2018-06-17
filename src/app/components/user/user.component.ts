@@ -19,6 +19,7 @@ export class UserComponent implements OnInit {
   public following;
   public followUserOver;
   constructor(
+    private router:Router,
     private route: ActivatedRoute,
     private _userService: UserService,
     private sanitizer: DomSanitizer,
@@ -69,4 +70,9 @@ export class UserComponent implements OnInit {
       }
     );
   }
+
+  setListTo(tag:string){
+    this.router.navigate(['tag',tag])
+
+}
 }

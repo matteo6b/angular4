@@ -1,74 +1,7 @@
-<!--<div class="container">
 
-  <div *ngIf="videoInfo" class="videoInfo">
-    <div class="videoContainer">
-
-      <video #videoPlayer (loadedmetadata)="onMetadata($event, videoPlayer)" (timeupdate)="onTimeUpdate($event, videoPlayer)" preload=”none”>
-        <source src="{{url}}{{videoInfo.video_src}}" type="video/mp4" >
-      </video>
-
-      <div class="progreso">
-        <div class="barra" [ngStyle]="{'width': progreso + '%'}"></div>
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="controles ">
-        <div class="col-sm-4 pull-left text-center" (click)=" reproducirVideo()">
-
-          <i class="fa fa-play"></i>
-        </div>
-
-        <div class="col-sm-4 pull-left text-center" (click)=" pausarVideo()">
-
-          <i class="fa fa-pause"></i>
-        </div>
-
-
-
-        <div class="col-sm-4 pull-left text-center" (click)=" detenerVideo()">
-
-          <i class="fa fa-stop"></i>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="detalles">
-      <h1> {{videoInfo.title}}
-        <div class="tiempo">
-          (
-          <span *ngIf="posicion"> {{posicion}} /</span> {{duracion }} )
-        </div>
-      </h1>
-
-      <p>Description: {{videoInfo.description}} </p>
-      <a>
-        <div class="row user">
-          <div class="sm-12 columns">
-            <img *ngIf="videoInfo.user.image" src="{{url+'get-image-file/'+ videoInfo.user.image}}" alt="image-user" width="75px" height="75px">
-            <img *ngIf="!videoInfo.user.image" src="assets/user.png" alt="image-user" width="75px" height="75px">
-          </div>
-          <div class="sm-12 columns text-center">
-            Creator: {{videoInfo.user.name}} {{videoInfo.user.surname}}
-          </div>
-
-        </div>
-      </a>
-    </div>
-  </div>
-
-
-
-
-
-
-</div>-->
 <div class="container" *ngIf="videoInfo">
   <div class="row">
-    <div class="co-lg-12 col-xs-12 col-sm-12 col-md-12">
+    <div class="co-lg-12 col-xs-12 col-sm-12 col-md-12 video">
 
 
       <vg-player class="img-fluid width-100">

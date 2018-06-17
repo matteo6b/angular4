@@ -14,16 +14,25 @@ export class VideoService {
 
   }
 
-getVideos(){
+getVideos(page){
   let headers = new Headers({
     'Content-Type':'application/json',
     'Authorization':this.userService.getToken()
 });
-  return this._http.get(this.url+'video/all',{headers:headers})
+  return this._http.get(this.url+'video/all/'+page,{headers:headers})
                               .map(res => res.json());
 
 }
-getTimeLine(page=1){
+findTag(page,tag){
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':this.userService.getToken()
+});
+  return this._http.get(this.url+'video/findTag/'+page+'/'+tag,{headers:headers})
+                              .map(res => res.json());
+
+}
+getTimeLine(page){
   let headers = new Headers({
     'Content-Type':'application/json',
     'Authorization':this.userService.getToken()

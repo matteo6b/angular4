@@ -11,11 +11,13 @@ import { MyVideosComponent } from './components/my-videos/my-videos.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/user/user.component';
 import {AuthGuard} from './services/auth.guard';
+import { TagComponent } from './components/tag/tag.component';
 const appRoutes : Routes = [
 
 {path: '',  redirectTo:'home', pathMatch: 'full',canActivate:[AuthGuard]},
 {path: '',  redirectTo:'login', pathMatch: 'full'},
 {path: 'home', component:HomeComponent,canActivate:[AuthGuard]},
+{path: 'tag/:tag', component:TagComponent,canActivate:[AuthGuard]},
 {path:'login', component:LoginComponent },
 {path:'registro', component:RegisterComponent },
 {path:'user-edit',component:UserEditComponent,canActivate:[AuthGuard]},
